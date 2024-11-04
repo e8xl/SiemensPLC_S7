@@ -36,6 +36,22 @@ def check_plc(ip, rack, slot):
         client.disconnect()
 
 
+def get_cpu_model(ip, rack, slot):
+    """获取指定IP PLC的CPU型号"""
+    client = snap7.client.Client()
+    try:
+        client.connect(ip, rack, slot)
+        info = client.get_cpu_info()
+        model_name = info.ModuleTypeName.decode('utf-8')  # 解码为字符串
+        serial_number = info.SerialNumber.decode('utf-8')  # 解码为字符串
+        return model_name, serial_number
+    except Exception as e:
+        print(f"无法读取{ip}的CPU型号: {e}")
+        return None, None
+    finally:
+        client.disconnect()
+
+
 def main():
     try:
         # 提供用户界面选择网卡
@@ -100,8 +116,11 @@ def main():
                 f"错误:b' ISO : An error occurred during recv TCP : Connection timed out'错误设备 {len(timeout_errors)} 台, "
                 f"请检查是否有其他程序占用PLC端口/IP地址，检查连通性，检查网卡设备是否正确\n错误设备地址: {', '.join(timeout_errors)}")
 
+        # 读取并打印连接成功设备的CPU型号
         for ip in successful_ips:
-            print(f"连接成功设备IP: {ip}")
+            model, serial = get_cpu_model(ip, rack, slot)
+            if model:
+                print(f"连接成功设备IP: {ip}, CPU型号: {model}, 序列号: {serial}")
 
     except KeyboardInterrupt:
         print("\n程序被用户终止，正常结束。")
