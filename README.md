@@ -44,7 +44,9 @@
 
 ### 遇到的问题
 
-~~无~~
+1. [CLI: function refused by CPU(Unknown error)](https://blog.csdn.net/u013551122/article/details/118384698)
+2. [S7-PLCSIM Advanced V4.0 SP1](https://www.bilibili.com/video/BV1PY411o7jg/)
+
 
 ---
 
@@ -54,4 +56,4 @@
 2. [手摸手教你撕碎西门子S7通讯协议01--S7协议介绍](https://blog.csdn.net/hqwest/article/details/139346989)
 3. [西门子——博图V16与PLCSIM Advanced仿真通讯配置（1500系列）](https://blog.csdn.net/qq_42504097/article/details/125394487)
 4. [snap7-python](https://python-snap7.readthedocs.io/en/latest/)
-
+5. [基于snap7模块 使用pycharm 实现plc通讯读写数据块数据](https://www.bilibili.com/video/BV13N411j7yz/)
